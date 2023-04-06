@@ -1,0 +1,29 @@
+{
+	"id": 115643354,
+	"name": "error tracking example",
+	"type": "error-tracking alert",
+	"query": "error-tracking-traces(\"service:ad-server-redis\").rollup(\"count\").by(\"@issue.id\").last(\"5m\") > 20",
+	"message": "{{#is_alert}}\n\n## Error Message: **{{span.attributes.error.message}}**\n\n---\n\n### Stack trace:\n`{{span.attributes.error.stack}}`\n\n{{/is_alert}}",
+	"tags": [
+		"creator:your_name",
+		"service:your_service",
+		"team:your_team"
+	],
+	"options": {
+		"thresholds": {
+			"critical": 20
+		},
+		"enable_logs_sample": false,
+		"notify_audit": false,
+		"restriction_query": null,
+		"on_missing_data": "default",
+		"include_tags": true,
+		"new_host_delay": 300,
+		"groupby_simple_monitor": false,
+		"silenced": {
+			"*": null
+		}
+	},
+	"priority": 2,
+	"restricted_roles": null
+}

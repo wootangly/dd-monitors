@@ -1,0 +1,25 @@
+{
+	"name": "[CW] EC2 Host: {{host.name}} scheduling a maintenance",
+	"type": "event-v2 alert",
+	"query": "events(\"source:(amazon_ec2 OR ec2) maintenance\").rollup(\"count\").last(\"15m\") > 0",
+	"message": "Example:\n\nUsing host {{host.name}} has emitted a maintence\nTitle: {{event.title}}\n\nThis is the text: {{{event.text}}}",
+	"tags": [
+		"team:your_team"
+	],
+	"options": {
+		"thresholds": {
+			"critical": 0
+		},
+		"enable_logs_sample": true,
+		"notify_audit": false,
+		"restriction_query": null,
+		"on_missing_data": "default",
+		"include_tags": true,
+		"escalation_message": "",
+		"new_host_delay": 300,
+		"groupby_simple_monitor": false,
+		"silenced": {}
+	},
+	"priority": 3
+	]
+}
